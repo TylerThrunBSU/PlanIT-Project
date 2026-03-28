@@ -1,0 +1,35 @@
+name: Deploy to EC2
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read    # This is required for actions/checkout
+  packages: write  # This is required for pushing Docker images
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
+      APP_VERSION: ${{ vars.APP_VERSION }}
+      APP_NAME: ${{ vars.APP_NAME }}
+      EC2_KEY_NAME: ${{ vars.EC2_KEY_NAME }}
+      EC2_DEPLOY_HOST: ${{ vars.EC2_DEPLOY_HOST }}
+      EC2_DEPLOY_DIR: ${{ vars.EC2_DEPLOY_DIR }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Deploy to EC2
+        run: |
+          mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
+          echo "${{ secrets.EC2_KEY }}" > "${HOME}/.ssh/${{ env.EC2_KEY_NAME }}"
+          chmod 600 "${HOME}/.ssh/${{ env.EC2_KEY_NAME }}"
+          ssh-keyscan ${{ env.EC2_DEPLOY_HOST }} >> ~/.ssh/known_hosts
+          ./dev.sh init
+          ./dev.sh deploy

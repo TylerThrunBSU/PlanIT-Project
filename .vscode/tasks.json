@@ -1,0 +1,126 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "dev: Help",
+      "type": "shell",
+      "command": "./dev.sh",
+      "args": ["help"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "isBackground": false
+    },
+    {
+      "label": "dev: Up (Start)",
+      "type": "shell",
+      "command": "./dev.sh",
+      "args": ["up"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "isBackground": false
+    },
+    {
+      "label": "dev: Down (Stop)",
+      "type": "shell",
+      "command": "./dev.sh",
+      "args": ["down"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "isBackground": false
+    },
+    {
+      "label": "dev: Build",
+      "type": "shell",
+      "command": "./dev.sh",
+      "args": ["build"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "isBackground": false
+    },
+    {
+      "label": "dev: New (Initialize)",
+      "type": "shell",
+      "command": "./dev.sh",
+      "args": ["new"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "isBackground": false
+    },
+    {
+      "label": "dev: Deploy",
+      "type": "shell",
+      "command": "./dev.sh",
+      "args": ["deploy"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "isBackground": false
+    },
+    {
+      "label": "dev: Clean",
+      "type": "shell",
+      "command": "./dev.sh",
+      "args": ["clean"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "isBackground": false
+    },
+    {
+      "label": "dev: Logs (Tail)",
+      "type": "shell",
+      "command": "./dev.sh",
+      "args": ["logs"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "isBackground": false
+    },
+    {
+      "label": "dev: SSH",
+      "type": "shell",
+      "command": "./dev.sh",
+      "args": ["ssh"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "isBackground": false
+    },
+    {
+      "label": "dev: Web (Open URL)",
+      "type": "shell",
+      "command": "./dev.sh",
+      "args": ["web"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "isBackground": false
+    },
+    {
+      "label": "dev: all (Build, Deploy)",
+      "type": "shell",
+      "command": "./dev.sh",
+      "args": ["all"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "isBackground": false
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+# Ignore the .git directory
+.git
+
+# Ignore all temporary files
+tmp/
+*.tmp
+
+# Ignore specific development environment files
+.env
+node_modules
+.vscode/
+.github/
+
+# Ignore any aws key files
+*.pem
+
+# Ignore Docker-specific files
+Dockerfile
+.dockerignore
+
+# Ignore sqlite database files
+*.sqlite
+*.db
+data/
+
+# Ignore tests and coverage reports
+coverage/
+tests/
+test-results/
+playwright
+README.md
