@@ -1,0 +1,102 @@
+<%
+  var isOverdue = false;
+  if (task.due_date && task.status !== 'completed') {
+    var due = new Date(task.due_date + 'T00:00:00');
+    var now = new Date();
+    now.setHours(0,0,0,0);
+    isOverdue = due < now;
+  }
+  var statusLabel = task.status === 'not_started' ? 'Not Started' : (task.status === 'in_progress' ? 'In Progress' : 'Completed');
+  var statusColor = task.status === 'in_progress' ? 'primary' : (task.status === 'completed' ? 'success' : 'secondary');
+%>
+
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+
+    <div class="d-flex justify-content-between align-items-start mb-4">
+      <div>
+        <h2 class="mb-1"><%= task.title %></h2>
+        <span class="badge bg-<%= statusColor %> me-2"><%= statusLabel %></span>
+        <% if (isOverdue) { %>
+          <span class="badge bg-danger">Overdue</span>
+        <% } %>
+      </div>
+      <div class="d-flex gap-2">
+        <a href="/tasks/<%= task.id %>/edit" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil me-1"></i>Edit</a>
+        <form action="/tasks/<%= task.id %>/delete" method="POST" onsubmit="return confirm('Delete this task?');">
+          <button type="submit" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash me-1"></i>Delete</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <table class="table table-borderless mb-0">
+          <tbody>
+            <tr>
+              <th class="text-muted" style="width: 140px;">Plan</th>
+              <td>
+                <% if (task.plan_title) { %>
+                  <a href="/plans/<%= task.plan_id %>"><i class="bi bi-folder me-1"></i><%= task.plan_title %></a>
+                <% } else { %>
+                  <span class="text-muted">—</span>
+                <% } %>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-muted">Category</th>
+              <td><%= task.category || '—' %></td>
+            </tr>
+            <tr>
+              <th class="text-muted">Due Date</th>
+              <td>
+                <% if (task.due_date) { %>
+                  <span class="<%= isOverdue ? 'text-danger fw-semibold' : '' %>"><%= task.due_date %></span>
+                <% } else { %>
+                  <span class="text-muted">No due date</span>
+                <% } %>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-muted">Created</th>
+              <td><%= task.created_at %></td>
+            </tr>
+            <% if (task.notes) { %>
+              <tr>
+                <th class="text-muted">Notes</th>
+                <td><%= task.notes %></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Quick status actions -->
+    <div class="card mb-4">
+      <div class="card-header">Update Status</div>
+      <div class="card-body d-flex gap-2">
+        <% if (task.status !== 'not_started') { %>
+          <form action="/tasks/<%= task.id %>/status" method="POST">
+            <input type="hidden" name="status" value="not_started">
+            <button type="submit" class="btn btn-sm btn-outline-secondary">Not Started</button>
+          </form>
+        <% } %>
+        <% if (task.status !== 'in_progress') { %>
+          <form action="/tasks/<%= task.id %>/status" method="POST">
+            <input type="hidden" name="status" value="in_progress">
+            <button type="submit" class="btn btn-sm btn-outline-primary">In Progress</button>
+          </form>
+        <% } %>
+        <% if (task.status !== 'completed') { %>
+          <form action="/tasks/<%= task.id %>/status" method="POST">
+            <input type="hidden" name="status" value="completed">
+            <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-check-lg me-1"></i>Mark Completed</button>
+          </form>
+        <% } %>
+      </div>
+    </div>
+
+    <a href="/tasks" class="text-muted small">&larr; Back to Tasks</a>
+  </div>
+</div>

@@ -1,45 +1,107 @@
+/* PlanIT — Global Styles */
+
+:root {
+  --planit-primary: #4f6ef7;
+  --planit-primary-dark: #3b5de7;
+}
+
 body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
-  padding: 20px 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #f5f6fa;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.95rem;
 }
 
-a {
-  color: #00B7FF;
+/* Navbar */
+.navbar {
+  background-color: var(--planit-primary) !important;
 }
 
+.navbar-brand {
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.nav-link {
+  font-weight: 500;
+}
+
+/* Cards */
 .card {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e5f1;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .card-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background-color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #e2e5f1;
 }
 
-.todo-item {
-  border-bottom: 1px solid #e9ecef;
-  padding: 12px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Buttons */
+.btn-primary {
+  background-color: var(--planit-primary);
+  border-color: var(--planit-primary);
 }
 
-.todo-item:last-child {
-  border-bottom: none;
+.btn-primary:hover {
+  background-color: var(--planit-primary-dark);
+  border-color: var(--planit-primary-dark);
 }
 
-.badge-completed {
-  background-color: #28a745;
+.btn-outline-primary {
+  color: var(--planit-primary);
+  border-color: var(--planit-primary);
 }
 
-.badge-pending {
-  background-color: #ffc107;
-  color: #333;
+.btn-outline-primary:hover {
+  background-color: var(--planit-primary);
+  border-color: var(--planit-primary);
 }
 
-.btn-delete {
-  padding: 0.25rem 0.5rem;
+/* Task status badges */
+.badge {
+  font-weight: 500;
+  font-size: 0.75rem;
+}
+
+/* Overdue card border */
+.card.border-danger {
+  border-left: 3px solid #dc3545;
+}
+
+/* Links */
+a {
+  color: var(--planit-primary);
+}
+
+a:hover {
+  color: var(--planit-primary-dark);
+}
+
+/* Footer */
+footer {
+  background-color: #fff;
+}
+
+/* Form tweaks */
+.form-label {
+  font-weight: 500;
   font-size: 0.875rem;
+}
+
+.form-select-sm,
+.form-control-sm {
+  font-size: 0.85rem;
+}
+
+/* Stats cards on dashboard */
+.fs-2 {
+  line-height: 1.2;
+}
+
+/* Completed tasks visual separation */
+.badge.bg-success {
+  opacity: 0.85;
 }

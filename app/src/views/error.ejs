@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <title><%= message %></title>
-  <link rel="stylesheet" href="/stylesheets/style.css" />
-  <style>
-    pre { white-space: pre-wrap; }
-  </style>
-</head>
-<body>
-  <h1><%= message %></h1>
-  <h2><%= (error && error.status) ? error.status : 500 %></h2>
-  <% if (error && error.stack) { %>
-    <pre><%= error.stack %></pre>
+<div class="text-center py-5">
+  <h1>Error</h1>
+  <p class="text-muted"><%= message || 'Something went wrong.' %></p>
+  <% if (error && error.stack && process.env.NODE_ENV !== 'production') { %>
+    <pre class="text-start bg-light p-3 rounded"><%= error.stack %></pre>
   <% } %>
-  <% if (!error || !error.stack) { %>
-    <p>No stack available.</p>
-  <% } %>
-  <p><a href="/">Back to home</a></p>
-</body>
- </html>
+  <a href="/" class="btn btn-primary mt-3">Back to Home</a>
+</div>

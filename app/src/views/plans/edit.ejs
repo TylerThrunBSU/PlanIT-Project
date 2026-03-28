@@ -1,0 +1,23 @@
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <h2 class="mb-4">Edit Plan</h2>
+    <div class="card">
+      <div class="card-body">
+        <form action="/plans/<%= plan.id %>" method="POST">
+          <div class="mb-3">
+            <label for="title" class="form-label">Plan Title <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="title" name="title" required value="<%= plan.title %>">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3"><%= plan.description %></textarea>
+          </div>
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="/plans/<%= plan.id %>" class="btn btn-outline-secondary">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

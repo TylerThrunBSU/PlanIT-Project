@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <h2 class="mb-4">Edit Task</h2>
+    <div class="card">
+      <div class="card-body">
+        <form action="/tasks/<%= task.id %>" method="POST">
+          <div class="mb-3">
+            <label for="title" class="form-label">Task Title <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="title" name="title" required value="<%= task.title %>">
+          </div>
+
+          <div class="mb-3">
+            <label for="plan_id" class="form-label">Plan <span class="text-danger">*</span></label>
+            <select class="form-select" id="plan_id" name="plan_id" required>
+              <option value="">Select a plan</option>
+              <% plans.forEach(function(plan) { %>
+                <option value="<%= plan.id %>" <%= task.plan_id == plan.id ? 'selected' : '' %>><%= plan.title %></option>
+              <% }); %>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="notes" class="form-label">Notes / Description</label>
+            <textarea class="form-control" id="notes" name="notes" rows="3"><%= task.notes %></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <input type="text" class="form-control" id="category" name="category" value="<%= task.category %>">
+          </div>
+
+          <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-select" id="status" name="status">
+              <option value="not_started" <%= task.status === 'not_started' ? 'selected' : '' %>>Not Started</option>
+              <option value="in_progress" <%= task.status === 'in_progress' ? 'selected' : '' %>>In Progress</option>
+              <option value="completed" <%= task.status === 'completed' ? 'selected' : '' %>>Completed</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="due_date" class="form-label">Due Date</label>
+            <input type="date" class="form-control" id="due_date" name="due_date" value="<%= task.due_date || '' %>">
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="/tasks/<%= task.id %>" class="btn btn-outline-secondary">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

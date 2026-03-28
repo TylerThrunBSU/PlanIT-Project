@@ -1,14 +1,83 @@
-<div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-10">
-      <div class="text-center mb-5">
-        <h1 class="display-4 text-white mb-3"><%= title %></h1>
-        <p class="text-white-50">GitHub Repository: <a href="https://github.com/shanep/fullstack-starter">https://github.com/shanep/fullstack-starter</a></p>
-        <img src="/images/dependency_2x.png" alt="Fullstack Dependency" class="img-fluid my-4" style="max-width: 200px;">
-        <ul class="list-unstyled text-white-50 mb-4">
-          <li><a href="/lab0.html" class="btn btn-secondary mt-3">Go to Lab 0 Page</a></li>
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+
+    <!-- Hero -->
+    <div class="text-center mb-5">
+      <h1 class="display-4 fw-bold">Welcome to PlanIT</h1>
+      <p class="lead text-muted">
+        A simple, lightweight task management system designed for college students
+        to stay organized while balancing classes, assignments, work, and personal commitments.
+      </p>
+    </div>
+
+    <div class="row g-4 mb-5">
+      <!-- Who is PlanIT For? -->
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Who is PlanIT For?</h5>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>College students managing multiple courses and deadlines</li>
+              <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Student groups collaborating on shared assignments</li>
+              <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Study groups coordinating schedules and responsibilities</li>
+              <li><i class="bi bi-check2 text-primary me-2"></i>Anyone who wants a straightforward way to organize tasks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Features -->
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Key Features</h5>
+            <div class="row g-3">
+              <div class="col-6 text-center">
+                <i class="bi bi-list-task fs-3 text-primary"></i>
+                <div class="fw-semibold mt-1">Plan Management</div>
+                <small class="text-muted">Organize tasks into plans for different areas of your life</small>
+              </div>
+              <div class="col-6 text-center">
+                <i class="bi bi-check2-circle fs-3 text-primary"></i>
+                <div class="fw-semibold mt-1">Status Tracking</div>
+                <small class="text-muted">Track progress with Not Started, In Progress, and Completed</small>
+              </div>
+              <div class="col-6 text-center">
+                <i class="bi bi-calendar-event fs-3 text-primary"></i>
+                <div class="fw-semibold mt-1">Due Dates</div>
+                <small class="text-muted">Set deadlines and get visual indicators for overdue tasks</small>
+              </div>
+              <div class="col-6 text-center">
+                <i class="bi bi-funnel fs-3 text-primary"></i>
+                <div class="fw-semibold mt-1">Smart Filtering</div>
+                <small class="text-muted">Filter by category, status, plan, or due date</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Use PlanIT -->
+    <div class="card mb-5">
+      <div class="card-body">
+        <h5 class="card-title">Why Use PlanIT?</h5>
+        <ul class="list-unstyled mb-0">
+          <li class="mb-2"><i class="bi bi-check2-square text-success me-2"></i>Simple way to create and manage plans and tasks</li>
+          <li class="mb-2"><i class="bi bi-check2-square text-success me-2"></i>Clear organization of what needs to be done</li>
+          <li class="mb-2"><i class="bi bi-check2-square text-success me-2"></i>Easy-to-use interface without complex features</li>
+          <li><i class="bi bi-check2-square text-success me-2"></i>Focus on essentials for practical everyday use</li>
         </ul>
       </div>
     </div>
+
+    <!-- CTA -->
+    <div class="text-center">
+      <h5>Ready to Get Started?</h5>
+      <p class="text-muted">Create your first plan and tasks to start organizing your life.</p>
+      <a href="/plans/new" class="btn btn-primary me-2"><i class="bi bi-folder-plus me-1"></i>Create Plan</a>
+      <a href="/tasks/new" class="btn btn-outline-primary"><i class="bi bi-plus-lg me-1"></i>Create Task</a>
+    </div>
+
   </div>
 </div>

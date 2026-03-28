@@ -5,6 +5,8 @@ const db = require('./bin/db');
 const fs = require('fs');
 
 const index = require('./routes/index');
+const plans = require('./routes/plans');
+const tasks = require('./routes/tasks');
 
 const app = express();
 
@@ -39,6 +41,13 @@ app.use((request, response, next) => {
   next();
 });
 app.use('/', index);
+app.use('/plans', plans);
+app.use('/tasks', tasks);
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).render('404', { title: 'Page Not Found' });
+});
 
 
 module.exports = app;

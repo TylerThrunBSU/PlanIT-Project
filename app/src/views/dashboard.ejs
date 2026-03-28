@@ -1,0 +1,104 @@
+<h2 class="mb-1">Dashboard</h2>
+<p class="text-muted mb-4">Here's what's happening with your tasks and plans</p>
+
+<!-- Stats cards -->
+<div class="row g-3 mb-4">
+  <div class="col-6 col-md-3">
+    <div class="card text-center h-100">
+      <div class="card-body">
+        <div class="text-muted small">Total Tasks</div>
+        <div class="fs-2 fw-bold"><%= stats.total || 0 %></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="card text-center h-100">
+      <div class="card-body">
+        <div class="text-muted small">Completed</div>
+        <div class="fs-2 fw-bold text-success"><%= stats.completed || 0 %></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="card text-center h-100">
+      <div class="card-body">
+        <div class="text-muted small">In Progress</div>
+        <div class="fs-2 fw-bold text-primary"><%= stats.in_progress || 0 %></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="card text-center h-100">
+      <div class="card-body">
+        <div class="text-muted small">Not Started</div>
+        <div class="fs-2 fw-bold text-secondary"><%= stats.not_started || 0 %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <!-- Left column -->
+  <div class="col-md-7">
+
+    <!-- Overdue alert -->
+    <% if (overdue.length > 0) { %>
+      <div class="alert alert-danger d-flex align-items-start mb-4">
+        <i class="bi bi-exclamation-circle-fill me-2 mt-1"></i>
+        <div>
+          <strong>You have <%= overdue.length %> overdue task<%= overdue.length > 1 ? 's' : '' %></strong>
+          <ul class="mb-0 mt-1">
+            <% overdue.forEach(function(t) { %>
+              <li><a href="/tasks/<%= t.id %>" class="text-danger"><%= t.title %></a> (Due: <%= t.due_date %>)</li>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+    <% } %>
+
+    <!-- Upcoming tasks -->
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Upcoming Due Dates</span>
+        <a href="/tasks" class="btn btn-sm btn-outline-primary">View All</a>
+      </div>
+      <div class="card-body">
+        <% if (upcoming.length === 0) { %>
+          <p class="text-muted mb-0">No upcoming tasks. Nice work!</p>
+        <% } else { %>
+          <% upcoming.forEach(function(t) { %>
+            <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+              <div>
+                <div class="fw-semibold"><%= t.title %></div>
+                <div class="small">
+                  <span class="badge bg-<%= t.status === 'in_progress' ? 'primary' : (t.status === 'completed' ? 'success' : 'secondary') %> me-1">
+                    <%= t.status === 'not_started' ? 'Not Started' : (t.status === 'in_progress' ? 'In Progress' : 'Completed') %>
+                  </span>
+                  <% if (t.plan_title) { %>
+                    <span class="text-muted"><i class="bi bi-folder me-1"></i><%= t.plan_title %></span>
+                  <% } %>
+                </div>
+              </div>
+              <div class="text-end">
+                <div class="small text-muted"><%= t.due_date %></div>
+                <a href="/tasks/<%= t.id %>" class="small">View Details</a>
+              </div>
+            </div>
+          <% }); %>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right column — quick actions -->
+  <div class="col-md-5">
+    <div class="card">
+      <div class="card-header">Quick Actions</div>
+      <div class="card-body d-grid gap-2">
+        <a href="/tasks/new" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>Add Task</a>
+        <a href="/plans/new" class="btn btn-outline-primary"><i class="bi bi-folder-plus me-1"></i>Add Plan</a>
+        <a href="/tasks" class="btn btn-outline-secondary"><i class="bi bi-list-task me-1"></i>View All Tasks</a>
+      </div>
+    </div>
+  </div>
+</div>

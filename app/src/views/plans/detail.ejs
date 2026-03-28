@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="mb-1"><i class="bi bi-folder me-1 text-primary"></i><%= plan.title %></h2>
+    <% if (plan.description) { %>
+      <p class="text-muted mb-0"><%= plan.description %></p>
+    <% } %>
+    <small class="text-muted">Created <%= plan.created_at %></small>
+  </div>
+  <div class="d-flex gap-2">
+    <a href="/plans/<%= plan.id %>/edit" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil me-1"></i>Edit</a>
+    <form action="/plans/<%= plan.id %>/delete" method="POST" onsubmit="return confirm('Delete this plan and all its tasks?');">
+      <button type="submit" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash me-1"></i>Delete</button>
+    </form>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h5 class="mb-0">Tasks (<%= tasks.length %>)</h5>
+  <a href="/tasks/new?plan_id=<%= plan.id %>" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg me-1"></i>Add Task</a>
+</div>
+
+<% if (tasks.length === 0) { %>
+  <div class="card">
+    <div class="card-body text-center py-4">
+      <p class="text-muted mb-2">No tasks in this plan yet.</p>
+      <a href="/tasks/new?plan_id=<%= plan.id %>" class="btn btn-sm btn-primary">Add a Task</a>
+    </div>
+  </div>
+<% } else { %>
+  <% tasks.forEach(function(task) { %>
+    <div class="card mb-2">
+      <div class="card-body d-flex justify-content-between align-items-center py-2">
+        <div>
+          <a href="/tasks/<%= task.id %>" class="fw-semibold text-decoration-none"><%= task.title %></a>
+          <div class="small">
+            <span class="badge bg-<%= task.status === 'in_progress' ? 'primary' : (task.status === 'completed' ? 'success' : 'secondary') %>">
+              <%= task.status === 'not_started' ? 'Not Started' : (task.status === 'in_progress' ? 'In Progress' : 'Completed') %>
+            </span>
+            <% if (task.category) { %>
+              <span class="text-muted ms-1"><i class="bi bi-tag me-1"></i><%= task.category %></span>
+            <% } %>
+            <% if (task.due_date) { %>
+              <span class="text-muted ms-1"><i class="bi bi-calendar me-1"></i><%= task.due_date %></span>
+            <% } %>
+          </div>
+        </div>
+        <div class="d-flex gap-1">
+          <a href="/tasks/<%= task.id %>" class="btn btn-sm btn-outline-primary" title="View"><i class="bi bi-eye"></i></a>
+          <% if (task.status !== 'in_progress') { %>
+            <form action="/tasks/<%= task.id %>/status" method="POST" class="d-inline">
+              <input type="hidden" name="status" value="in_progress">
+              <button type="submit" class="btn btn-sm btn-outline-warning" title="Start"><i class="bi bi-play-fill"></i></button>
+            </form>
+          <% } %>
+          <% if (task.status !== 'completed') { %>
+            <form action="/tasks/<%= task.id %>/status" method="POST" class="d-inline">
+              <input type="hidden" name="status" value="completed">
+              <button type="submit" class="btn btn-sm btn-outline-success" title="Complete"><i class="bi bi-check-lg"></i></button>
+            </form>
+          <% } %>
+          <form action="/tasks/<%= task.id %>/delete" method="POST" class="d-inline" onsubmit="return confirm('Delete this task?');">
+            <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete"><i class="bi bi-trash"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  <% }); %>
+<% } %>
+
+<div class="mt-3">
+  <a href="/plans" class="text-muted small">&larr; Back to Plans</a>
+</div>
